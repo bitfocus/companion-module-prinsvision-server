@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+package-lock.json
+/.yarn
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
+
+# Build output — dist/ is the tsc output (dev-mode entrypoint, rebuild with
+# `npm run build`); *.tgz is the distributable bundle from `npm run package`.
+dist/
+*.tgz
+pkg/

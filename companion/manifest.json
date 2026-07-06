@@ -1,0 +1,40 @@
+{
+    "$schema": "../node_modules/@companion-module/base/assets/manifest.schema.json",
+    "id": "prinsvision-server",
+    "name": "Prins Vision Server",
+    "type": "connection",
+    "shortname": "PV Server",
+    "description": "Connect to Prins Vision Server for color grading control. Requires Companion 4.3 or newer.",
+    "version": "2.0.2",
+    "license": "MIT",
+    "repository": "https://github.com/bitfocus/companion-module-prinsvision-server",
+    "bugs": "https://github.com/bitfocus/companion-module-prinsvision-server/issues",
+    "maintainers": [
+        {
+            "name": "Prins Vision",
+            "github": "lenstar"
+        }
+    ],
+    "legacyIds": [],
+    "runtime": {
+        "type": "node22",
+        "api": "nodejs-ipc",
+        "apiVersion": "0.0.0",
+        "entrypoint": "../dist/main.js"
+    },
+    "manufacturer": "Prins Vision",
+    "products": [
+        "Prins Vision"
+    ],
+    "keywords": [
+        "grading",
+        "color",
+        "broadcast"
+    ],
+    "bonjourQueries": {
+        "bonjour_device": {
+            "type": "prinsvision",
+            "protocol": "tcp"
+        }
+    }
+}
