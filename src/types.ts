@@ -9,12 +9,16 @@ export interface SlotInfo {
     slotNumber: number
     label: string
     status: SlotStatus
+    /** Wheel pivot / Log-range defaults follow it */
+    pipelineMode: 'prinsvision' | 'aces'
 }
 
 export interface LayerInfo {
     id: string
     type: string // 'primary_wheels' | 'log_wheels' | 'curves' | 'lut3d' | 'cst'
     enabled: boolean
+    /** May be edited: own eye on and Corrector not bypassed. Absent from older Cores. */
+    active?: boolean
     params: Record<string, unknown>
 }
 
@@ -32,10 +36,12 @@ export interface SlotStateChangedPayload {
 
 export interface LayerStackSyncPayload {
     slot_id: string // Slot UUID
+    pipeline_mode?: string
     layers: Array<{
         id: string
         type: string
         enabled: boolean
+        active?: boolean
         params: Record<string, unknown>
     }>
 }
@@ -54,11 +60,13 @@ export interface StateSnapshotPayload {
         slot_number: number
         label: string
         status: string
+        pipeline_mode?: string
     }>
     layers_by_slot: Record<string, Array<{
         id: string
         type: string
         enabled: boolean
+        active?: boolean
         params: Record<string, unknown>
     }>>
 }

@@ -4,8 +4,8 @@ export interface PrinsVisionConfig {
     bonjour_device: string
     host: string
     port: number
-    api_key: string
     pair_code: string
+    input_mapping?: string
 }
 
 export function getConfigFields(): SomeCompanionConfigField[] {
@@ -36,20 +36,13 @@ export function getConfigFields(): SomeCompanionConfigField[] {
         },
         {
             type: 'textinput',
-            id: 'api_key',
-            label: 'API Key',
+            id: 'pair_code',
+            label: 'Pair Code',
             default: '',
             width: 12,
-        },
-        {
-            type: 'textinput',
-            id: 'pair_code',
-            label: 'Pair Code (required — links to one Control UI user)',
-            default: '',
-            width: 6,
             tooltip:
-                'Generate this in PrinsVision Control UI → PatchBay Config → Companion. ' +
-                'Required: the server rejects connections without a valid pair code.',
+                'Copy it from PrinsVision → Patch Bay Config → Companion. ' +
+                'It is the only key this connection needs and links it to one PrinsVision user.',
         },
     ]
 }
