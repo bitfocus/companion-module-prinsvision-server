@@ -97,12 +97,14 @@ Wave Corrector encoders show the same numbers as the Control UI editor:
 | Encoder | Range | LCD |
 |---------|-------|-----|
 | Temp / Tint | ±4000 / ±100 | Temp = change from 6500 K, 0 = neutral |
-| Pedestal | ±20 % | % video |
+| Pedestal | ±20 % | % video at black (camera master black: black moves the full step, white barely) |
 | Band Gamma | ±100 | |
 | Gain | 1–1000 % | %, 100 = neutral |
+| Exposure | ±8 stops, one tick = ¼ stop | stops, 0 = neutral; separate from Gain (picture × Gain × 2^Exposure) |
 | Band Low / Band High | 0–100 % | % video; Low stays 1 % under High |
-| Softness | 0–25 % | % video |
+| Soft Low / Soft High | 8–25 % each | % video; Low softens the shadow↔band edge, High the band↔white edge; never under 8 % (a harder edge shows a line), default 10 % |
 | Saturation | 0–200 % | % |
+| Hue | ±180°, one tick = 1° | degrees, 0 = neutral |
 | Contrast | 0.001–4 | factor, 1 = neutral |
 | Shadow / Band / White R, G, B | R ±100, G ±40, B ±128 (the ball's circle) | the ball as an RGB balance, as in the editor; luma is held, so the other two channels give way |
 

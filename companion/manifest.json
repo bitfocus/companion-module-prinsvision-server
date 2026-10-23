@@ -5,7 +5,7 @@
     "type": "connection",
     "shortname": "PV Server",
     "description": "Connect to Prins Vision Server for color grading control. Requires Companion 4.3 or newer.",
-    "version": "3.2.0",
+    "version": "3.5.0",
     "license": "MIT",
     "repository": "https://github.com/bitfocus/companion-module-prinsvision-server",
     "bugs": "https://github.com/bitfocus/companion-module-prinsvision-server/issues",

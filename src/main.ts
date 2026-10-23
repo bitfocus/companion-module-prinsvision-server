@@ -968,7 +968,7 @@ export default class PrinsVisionModule extends InstanceBase<any> {
 
             reset_wave_corrector: {
                 name: 'Grading: Reset Wave Corrector',
-                description: 'Reset the Wave Corrector (gain, pedestal, band, balls, saturation, contrast, temp/tint) to neutral on a slot',
+                description: 'Reset the Wave Corrector (gain, exposure, pedestal, band, balls, saturation, hue, contrast, temp/tint) to neutral on a slot',
                 options: [SLOT_NUMBER_FIELD],
                 callback: (action) => {
                     const slotNum = this.resolveSlot(action.options['slot_number'])
@@ -1411,10 +1411,12 @@ export default class PrinsVisionModule extends InstanceBase<any> {
             encoders_wave: {
                 title: 'Encoders — Wave Corrector',
                 // Editor order: temp/tint, the rings (Pedestal/Band Gamma/Gain
-                // under Shadow/Band/White), the band, the knob row, then each
-                // ball as R/G/B.
+                // under Shadow/Band/White) with Exposure next to Gain, the band,
+                // the knob row, then each ball as R/G/B.
                 ids: ['wave_temperature', 'wave_tint', 'wave_pedestal', 'wave_band_gamma', 'wave_gain',
-                    'wave_band_low', 'wave_band_high', 'wave_softness', 'wave_saturation', 'wave_contrast',
+                    'wave_exposure',
+                    'wave_band_low', 'wave_band_high', 'wave_soft_low', 'wave_soft_high', 'wave_saturation',
+                    'wave_hue', 'wave_contrast',
                     ...(['shadow', 'band', 'white'] as const).flatMap((b) =>
                         (['r', 'g', 'b'] as const).map((ch) => `wave_${b}_${ch}`))],
             },

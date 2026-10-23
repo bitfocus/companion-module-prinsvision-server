@@ -1,6 +1,6 @@
 {
     "name": "companion-module-prinsvision-server",
-    "version": "3.2.0",
+    "version": "3.5.0",
     "description": "Bitfocus Companion module for PrinsVision color grading system",
     "main": "dist/main.js",
     "type": "module",

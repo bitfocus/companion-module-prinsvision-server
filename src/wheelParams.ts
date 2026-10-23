@@ -91,9 +91,9 @@ export function nodeDefaults(nodeType: WheelNodeType, mode: PipelineMode): Param
             // (the same in both modes; the server's neutral_params() equals it).
             // wave_corrector_params_test.mjs compares against that file.
             return {
-                gain: 1, pedestal: 0, bandLow: 0.2, bandHigh: 0.45, softness: 0.05, bandGamma: 0,
-                shadow: [0, 0], band: [0, 0], white: [0, 0],
-                saturation: 1, contrast: 1, temperature: 0, tint: 0,
+                gain: 1, exposure: 0, pedestal: 0, bandLow: 0.2, bandHigh: 0.45, softLow: 0.1, softHigh: 0.1,
+                bandGamma: 0, shadow: [0, 0], band: [0, 0], white: [0, 0],
+                saturation: 1, hue: 0, contrast: 1, temperature: 0, tint: 0,
             }
     }
 }
@@ -411,12 +411,20 @@ const WAVE_SPECS: ParamSpec[] = [
     // editor box's 2: a 3.0 set from the Tangent would otherwise snap to 2 on
     // the first encoder tick. Steps per encoder tick.
     waveScalar('gain', 'Gain', 0.01, 10, 0.01, 1, 100),
+    // Exposure in stops, apart from Gain (x2 = gain * 2^exposure * x1): ±8 like
+    // the editor's typing limit and the Tangent, one tick = ¼ stop, LCD in stops.
+    waveScalar('exposure', 'Exposure', -8, 8, 0.25, 2),
     waveScalar('pedestal', 'Pedestal', -0.2, 0.2, 0.001, 1, 100),
     waveScalar('bandGamma', 'Band Gamma', -1, 1, 0.01, 1, 100),
     waveBandEdge('low'),
     waveBandEdge('high'),
-    waveScalar('softness', 'Softness', 0, 0.25, 0.005, 1, 100),
+    // One softness per band edge, each 8–25 %, feathered outside the band only (no half-band clamp).
+    // 8 % is the minimum feather the server and the Engine accept (MIN_SOFTNESS).
+    waveScalar('softLow', 'Soft Low', 0.08, 0.25, 0.005, 1, 100),
+    waveScalar('softHigh', 'Soft High', 0.08, 0.25, 0.005, 1, 100),
     waveScalar('saturation', 'Saturation', 0, 2, 0.02, 1, 100),
+    // Hue: Oklab rotation in degrees, ±180 like the editor box and the Tangent (539); 1° per tick.
+    waveScalar('hue', 'Hue', -180, 180, 1, 1),
     waveScalar('contrast', 'Contrast', 0.001, 4, 0.01, 2),
     waveScalar('temperature', 'Temperature', -TEMP_LIMIT_K, TEMP_LIMIT_K, 50, 0),
     waveScalar('tint', 'Tint', -TINT_LIMIT, TINT_LIMIT, 1, 1),
